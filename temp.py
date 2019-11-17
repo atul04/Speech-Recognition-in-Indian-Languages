@@ -11,13 +11,16 @@ import os, sys
 txt_or_wav = sys.argv[1]
 os.system('mkdir -p data/ms_dataset/temp/ms/txt')
 os.system('mkdir -p data/ms_dataset/temp/ms/wav')
-f1 = open('data/src-temp.txt', 'w')
-f2 = open('data/tgt-temp.txt', 'w')
+if txt_or_wav == 'wav':	
+	f1 = open('data/src-temp.txt', 'w')
+if txt_or_wav == 'txt':	
+	f2 = open('data/tgt-temp.txt', 'w')
+
 os.system('ls data/ms_dataset/train/ms/' + txt_or_wav + ' > temp.txt')
 count = 0
 for file in open('temp.txt'):
 	count += 1
-	if count < 2000:
+	if count <= 2000:
 		#print('mv data/ms_dataset/train/ms/' + txt_or_wav + '/' + file.rstrip() + ' data/ms_dataset/temp/ms/'+ txt_or_wav + '/')
 		
 		if txt_or_wav == 'wav':		
@@ -31,9 +34,10 @@ for file in open('temp.txt'):
 			f2.write(t2+'\n')
 			t1.close()
 			
-
-f1.close()
-f2.close()
+if txt_or_wav == 'wav':	
+	f1.close()
+if txt_or_wav == 'txt':	
+	f2.close()
 
 
 		
